@@ -1,0 +1,10 @@
+node_modules/
+.next/
+.npm-cache/
+.env*
+!.env.example
+*.tsbuildinfo
+next-env.d.ts
+.artwork-review/
+character-review.png
+studio-review.png
