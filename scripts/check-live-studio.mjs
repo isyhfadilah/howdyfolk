@@ -36,6 +36,16 @@ try {
  await page.setViewportSize({width:390,height:844});
  await page.locator('.studio').screenshot({path:'.artwork-review/live/mobile.png'});
  if(await page.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth))throw new Error('Mobile horizontal overflow');
+ if(process.env.CHECK_UNCONFIGURED_SERVICES==='1'){
+  await page.goto('http://localhost:3000/login');
+  if(await page.locator('h1').evaluate(element=>getComputedStyle(element).fontSize)!=='36px')throw new Error('Tailwind typography is not active');
+  if(!await page.getByRole('button',{name:'Email me a sign-in link'}).isDisabled())throw new Error('Unconfigured authentication should be disabled');
+  await page.goto('http://localhost:3000/account');
+  if(!page.url().endsWith('/login'))throw new Error('Account should require authentication');
+  const denied=await page.request.get('http://localhost:3000/api/assets/00000000-0000-0000-0000-000000000000');
+  if(denied.status()!==503)throw new Error('Unconfigured premium delivery should fail closed');
+  console.log('Unconfigured account and premium access correctly denied.');
+ }
  console.log(`Checked ${combinations} live combinations, PNG export and mobile overflow.`);
  if(errors.length)throw new Error(errors.join('\n'));
  console.log('Live page loaded all character layers without browser errors.');

@@ -44,7 +44,7 @@ export default function ModularStudio() {
   }
 
   return <>
-    <header><a className="logo" href="/">howdyfolk <span>☺</span></a><nav><a href="#studio">Character studio</a><a href="#about">About the folk</a><span className="pill">THE NEW FOLK · ARTWORK PREVIEW</span></nav></header>
+    <header><a className="logo" href="/">howdyfolk <span>☺</span></a><nav><a href="#studio">Character studio</a><a href="#about">About the folk</a><a href="/account">Your account</a><span className="pill">THE NEW FOLK · ARTWORK PREVIEW</span></nav></header>
     <main><section className="intro"><div className="eyebrow">GOOD PEOPLE. ENDLESS LITTLE POSSIBILITIES.</div><h1>Same folk.<br/><em>A whole new look.</em><span className="spark">✳</span></h1><p>Meet your new cast of characters. Find their outfit,<br/>switch up their hair, and add a little personality.</p><div className="intro-bottom"><span>↓ MAKE SOMEONE YOU’D LIKE TO MEET</span><span className="scribble">Three faces. Your kind of people.</span></div></section>
     <section id="studio" className="studio"><aside><div className="panel-heading"><h2>Meet your folk</h2><span>START WITH A FACE</span></div><div className="people-picker">{people.map((name,i)=><button className={person===i?'person active':'person'} key={name} aria-pressed={person===i} onClick={()=>setPerson(i)}><img src={`/illustrations/studio/head-${name.toLowerCase()}.png`} alt={`Character ${name}`}/><b>Character {name}</b></button>)}</div>
     <div className="tabs">{['Outfit','Hair','Accessories'].map((name,i)=><button key={name} className={tab===i?'selected':''} onClick={()=>setTab(i)}>{name}</button>)}</div>
