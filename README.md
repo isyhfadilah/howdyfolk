@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# howdyfolk
-=======
 # Howdyfolk
 
 Local stage-A character-builder prototype. The editable SVG artwork is exploratory and code-authored; it is not a finished commercial illustration collection.
